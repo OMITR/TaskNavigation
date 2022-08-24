@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Task(
     val taskName: String,
-    val priority: String,
+    val timestamp: Long,
     val date: Long? = null,
     val coordinates: String? = null,
     @PrimaryKey val id: Int? = null
