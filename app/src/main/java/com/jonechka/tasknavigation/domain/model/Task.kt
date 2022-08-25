@@ -2,6 +2,7 @@ package com.jonechka.tasknavigation.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.coroutines.Job
 
 @Entity
 data class Task(

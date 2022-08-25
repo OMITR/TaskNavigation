@@ -14,7 +14,7 @@ class AddTask(
             throw InvalidTaskException("The name of the task cannot be empty.")
         }
         if (task.coordinates!!.isBlank() && task.date == null) {
-            throw InvalidTaskException("Uour task must contain coordinates or date.")
+            throw InvalidTaskException("Your task must contain coordinates or date.")
         }
 
     }
