@@ -1,4 +1,4 @@
-package com.jonechka.tasknavigation.presentation
+package com.jonechka.tasknavigation.presentation.tasks
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

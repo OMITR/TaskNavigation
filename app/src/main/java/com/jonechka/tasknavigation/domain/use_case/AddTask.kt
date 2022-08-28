@@ -10,7 +10,7 @@ class AddTask(
 
     @Throws(InvalidTaskException::class)
     suspend operator fun invoke(task: Task) {
-        if (task.taskName.isBlank()) {
+        if (task.taskTitle.isBlank()) {
             throw InvalidTaskException("The name of the task cannot be empty.")
         }
         if (task.coordinates!!.isBlank() && task.date == null) {

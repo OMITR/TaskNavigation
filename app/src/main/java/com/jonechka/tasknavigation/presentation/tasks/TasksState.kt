@@ -1,4 +1,4 @@
-package com.jonechka.tasknavigation.presentation
+package com.jonechka.tasknavigation.presentation.tasks
 
 import com.jonechka.tasknavigation.domain.model.Task
 import com.jonechka.tasknavigation.domain.util.OrderType
