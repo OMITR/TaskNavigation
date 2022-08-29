@@ -8,8 +8,6 @@ import com.jonechka.tasknavigation.ui.theme.*
 data class Task(
     val taskTitle: String,
     val timestamp: Long,
-    val date: Long? = null,
-    val coordinates: String? = null,
     val color: Int,
     @PrimaryKey val id: Int? = null
 ) {

@@ -1,5 +1,6 @@
 package com.jonechka.tasknavigation.presentation.tasks
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,7 +22,7 @@ import com.jonechka.tasknavigation.presentation.tasks.components.TaskItem
 import com.jonechka.tasknavigation.util.Screen
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalAnimationApi::class)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun TasksScreen(
     navController: NavController,
@@ -39,11 +40,11 @@ fun TasksScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add task")
             }
         },
         scaffoldState = scaffoldState
-    ) { padding ->
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

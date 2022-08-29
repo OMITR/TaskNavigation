@@ -13,9 +13,6 @@ class AddTask(
         if (task.taskTitle.isBlank()) {
             throw InvalidTaskException("The name of the task cannot be empty.")
         }
-        if (task.coordinates!!.isBlank() && task.date == null) {
-            throw InvalidTaskException("Your task must contain coordinates or date.")
-        }
-
+        repository.insertTask(task)
     }
 }

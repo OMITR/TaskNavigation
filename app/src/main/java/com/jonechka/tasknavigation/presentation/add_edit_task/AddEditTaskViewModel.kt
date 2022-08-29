@@ -35,7 +35,20 @@ class AddEditTaskViewModel @Inject constructor(
     private var currentTaskId: Int? = null
 
     init {
-
+        savedStateHandle.get<Int>("taskId")?.let { taskId ->
+            if (taskId != -1) {
+                viewModelScope.launch {
+                    tasksUseCases.getTask(taskId)?.also { task ->
+                        currentTaskId = task.id
+                        _taskTitle.value = taskTitle.value.copy(
+                            text = task.taskTitle,
+                            isHintVisible = false
+                        )
+                        _taskColor.value = task.color
+                    }
+                }
+            }
+        }
     }
 
     fun onEvent(event: AddEditTaskEvent) {
@@ -65,6 +78,7 @@ class AddEditTaskViewModel @Inject constructor(
                                 id = currentTaskId
                             )
                         )
+                        _eventFlow.emit(UiEvent.SaveTask)
                     } catch (e: InvalidTaskException) {
                         _eventFlow.emit(
                             UiEvent.ShowSnackbar(

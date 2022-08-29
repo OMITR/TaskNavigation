@@ -1,7 +1,10 @@
 package com.jonechka.tasknavigation.presentation.tasks.components
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -28,7 +31,7 @@ fun TaskItem(
     task: Task,
     modifier: Modifier,
     cornerRadius: Dp = 10.dp,
-    cutCornerSize: Dp = 30.dp,
+    cutCornerSize: Dp = 20.dp,
     onDeleteClick: () -> Unit
 ) {
     Box(
