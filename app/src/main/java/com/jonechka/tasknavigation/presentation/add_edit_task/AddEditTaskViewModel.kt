@@ -1,14 +1,16 @@
 package com.jonechka.tasknavigation.presentation.add_edit_task
 
+import android.app.Application
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jonechka.tasknavigation.domain.model.InvalidTaskException
 import com.jonechka.tasknavigation.domain.model.Task
 import com.jonechka.tasknavigation.domain.use_case.TasksUseCases
+import com.jonechka.tasknavigation.util.NotificationService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -17,9 +19,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditTaskViewModel @Inject constructor(
+    application: Application,
     private val tasksUseCases: TasksUseCases,
     savedStateHandle: SavedStateHandle
-) : ViewModel() {
+) : AndroidViewModel(application) {
 
     private val _taskTitle = mutableStateOf(TaskTextFieldsState(
         hint = "Enter title..."
@@ -79,6 +82,7 @@ class AddEditTaskViewModel @Inject constructor(
                             )
                         )
                         _eventFlow.emit(UiEvent.SaveTask)
+                        NotificationService(getApplication()).showNotification()
                     } catch (e: InvalidTaskException) {
                         _eventFlow.emit(
                             UiEvent.ShowSnackbar(

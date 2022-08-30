@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.jonechka.tasknavigation.presentation.add_edit_task.AddEditTaskScreen
 import com.jonechka.tasknavigation.presentation.tasks.TasksScreen
 import com.jonechka.tasknavigation.ui.theme.TaskAppTheme
+import com.jonechka.tasknavigation.util.NotificationService
 import com.jonechka.tasknavigation.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val service = NotificationService(applicationContext)
+
         setContent {
             TaskAppTheme {
                 Surface(

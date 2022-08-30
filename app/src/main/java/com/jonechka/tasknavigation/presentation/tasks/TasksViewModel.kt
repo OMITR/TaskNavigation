@@ -1,13 +1,15 @@
 package com.jonechka.tasknavigation.presentation.tasks
 
+import android.app.Application
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.jonechka.tasknavigation.domain.model.Task
 import com.jonechka.tasknavigation.domain.use_case.TasksUseCases
 import com.jonechka.tasknavigation.domain.util.OrderType
 import com.jonechka.tasknavigation.domain.util.TaskOrder
+import com.jonechka.tasknavigation.util.NotificationService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
@@ -17,8 +19,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TasksViewModel @Inject constructor(
+    application: Application,
     private val tasksUseCases: TasksUseCases
-) : ViewModel() {
+) : AndroidViewModel(application) {
 
     private val _state = mutableStateOf(TasksState())
     val state: State<TasksState> = _state
@@ -50,6 +53,7 @@ class TasksViewModel @Inject constructor(
             is TasksEvent.RestoreTask -> {
                 viewModelScope.launch {
                     tasksUseCases.addTask(recentlyDeletedTask ?: return@launch)
+                    NotificationService(getApplication()).showNotification()
                     recentlyDeletedTask = null
                 }
             }
